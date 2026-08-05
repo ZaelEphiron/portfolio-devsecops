@@ -83,18 +83,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker-build-and-scan
 
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
 
       - name: Connexion à GitHub Container Registry
-        run: |
-          echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Construction de l'image Docker (pour le push)
+      - name: Push de l'image FastAPI vers GHCR
         run: |
-          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/pipeline-ci-cd:latest ./projects/pipeline-ci-cd
-
-      - name: Push de l'image dans GHCR
-        run: |
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/pipeline-ci-cd:latest
+          docker push ghcr.io/${{ github.repository_owner }}/portfolio-devsecops:latest
