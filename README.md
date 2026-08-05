@@ -1,7 +1,11 @@
 # Portfolio DevSecOps
 ![CI Pipeline](https://github.com/ZaelEphiron/portfolio-devsecops/actions/workflows/ci.yml/badge.svg)
+![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker)
+![GHCR](https://img.shields.io/badge/GitHub%20Container%20Registry-GHCR-blueviolet?logo=github)
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![Trivy Scan](https://img.shields.io/badge/Security-Scanned%20with%20Trivy-green?logo=aqua)
 
-#Bienvenue dans mon portfolio DevSecOps.
+## Bienvenue dans mon portfolio DevSecOps.
 Ce dépôt regroupe mes projets, mes pratiques, mes outils et mes expérimentations autour de la sécurité, de l’automatisation et de l’ingénierie logicielle moderne.
 
 🎯 Objectifs :
