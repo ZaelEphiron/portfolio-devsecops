@@ -23,6 +23,16 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install FastAPI app dependencies
+        working-directory: projects/fastapi-app
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Basic FastAPI startup check
+        working-directory: projects/fastapi-app
+        run: |
+          python -c "import uvicorn; print('FastAPI OK')"
+      
       - name: Installation des dépendances
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
