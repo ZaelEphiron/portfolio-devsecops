@@ -64,14 +64,16 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: Construction de l'image Docker
+      - name: Build Docker image for FastAPI app
         run: |
-          docker build -t pipeline-ci-cd-image ./projects/pipeline-ci-cd
+          docker build \
+          -t ghcr.io/${{ github.repository_owner }}/portfolio-devsecops:latest \
+          projects/fastapi-app
 
       - name: Scan de l'image Docker avec Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: pipeline-ci-cd-image
+          image-ref: ghcr.io/${{ github.repository_owner }}/portfolio-devsecops:latest
           format: table
           exit-code: 0
           vuln-type: 'os,library'
